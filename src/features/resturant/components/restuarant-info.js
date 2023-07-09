@@ -1,8 +1,15 @@
 import { View, StyleSheet, Image } from "react-native";
 import { Avatar, Button, Card, Text } from "react-native-paper";
 
-const LeftContent = (props) => <Avatar.Icon {...props} icon="folder" />;
+import { styled } from "styled-components/native";
 
+const Title = styled.Text`
+  color: white;
+  font-family: Oswald-black;
+`;
+const RestuarantCard = styled(Card)`
+  background-color: ${(props) => props.theme.colors.brand.primary};
+`;
 export const RestuarantInfo = ({ restaurant = {} }) => {
   const {
     name = "polo",
@@ -13,16 +20,16 @@ export const RestuarantInfo = ({ restaurant = {} }) => {
     isClosedTemporarily,
   } = restaurant;
   return (
-    <Card elevation={1}>
+    <RestuarantCard elevation={1}>
       <Card.Cover
         style={styles.image_container}
         source={{ uri: "https://picsum.photos/700" }}
       />
       <Card.Content>
-        <Text variant="titleLarge">Card title</Text>
+        <Title variant="titleLarge">Card title</Title>
         <Text variant="bodyMedium">Card content</Text>
       </Card.Content>
-    </Card>
+    </RestuarantCard>
     // <View style={styles.card_container}>
     //   <Image
     //     style={styles.logo}
