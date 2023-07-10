@@ -1,4 +1,6 @@
 import { RestuarantScreen } from "./src/features/resturant/screens/restuarant.screen";
+import { View, StyleSheet, Image, Text } from "react-native";
+
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
 import { useCallback } from "react";

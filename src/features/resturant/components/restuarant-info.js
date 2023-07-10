@@ -1,8 +1,11 @@
-import { View, StyleSheet, Image } from "react-native";
-import { Avatar, Button, Card, Text } from "react-native-paper";
+import { StyleSheet, View } from "react-native";
+import { Text, Card } from "react-native-paper";
+import Star from "../../../../assets/Star2.svg";
+import Open from "../../../../assets/open.svg";
 
 import { styled } from "styled-components/native";
 
+//our CSS style
 const Title = styled.Text`
   color: white;
   font-family: Oswald-black;
@@ -10,15 +13,28 @@ const Title = styled.Text`
 const RestuarantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.brand.primary};
 `;
+
+const Rating = styled.View`
+  flex-direction: row;
+  justify-content: space-between;
+  padding-top: 2px;
+  padding-bottom: 2px;
+`;
+// our sample data
 export const RestuarantInfo = ({ restaurant = {} }) => {
   const {
     name = "polo",
     photo = "https://www.townandcountrymag.com/leisure/dining/a35968686/the-polo-bar-rides-again/",
     address = "baghale kav",
     isOpenNow = true,
-    rating = 4,
+    rating = 3,
     isClosedTemporarily,
   } = restaurant;
+
+  // for stars
+  const ratingArray = new Array(rating);
+  const result = Array.from(ratingArray, (v) => (v === undefined ? "-" : v));
+
   return (
     <RestuarantCard elevation={1}>
       <Card.Cover
@@ -27,6 +43,15 @@ export const RestuarantInfo = ({ restaurant = {} }) => {
       />
       <Card.Content>
         <Title variant="titleLarge">Card title</Title>
+        <Rating>
+          <View style={{ flexDirection: "row" }}>
+            {result.map((item, index) => (
+              <Star width={20} height={20} />
+            ))}
+          </View>
+          {isOpenNow && <Open width={20} height={20} />}
+        </Rating>
+
         <Text variant="bodyMedium">Card content</Text>
       </Card.Content>
     </RestuarantCard>
