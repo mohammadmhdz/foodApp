@@ -1,15 +1,13 @@
 import { StyleSheet, View } from "react-native";
-import { Text, Card } from "react-native-paper";
+import { Card } from "react-native-paper";
 import Star from "../../../../assets/Star2.svg";
 import Open from "../../../../assets/open.svg";
-
 import { styled } from "styled-components/native";
+//CONSISTENCY
+import { Spacer } from "../../../components/spacer/spacer.component";
+import { Text } from "../../../components/typography/text.component";
 
 //our CSS style
-const Title = styled.Text`
-  color: white;
-  font-family: Oswald-black;
-`;
 const RestuarantCard = styled(Card)`
   background-color: ${(props) => props.theme.colors.brand.primary};
 `;
@@ -31,7 +29,7 @@ export const RestuarantInfo = ({ restaurant = {} }) => {
     isClosedTemporarily,
   } = restaurant;
 
-  // for stars
+  // STARS svg setting // map func do not work on undefined arrays
   const ratingArray = new Array(rating);
   const result = Array.from(ratingArray, (v) => (v === undefined ? "-" : v));
 
@@ -42,29 +40,21 @@ export const RestuarantInfo = ({ restaurant = {} }) => {
         source={{ uri: "https://picsum.photos/700" }}
       />
       <Card.Content>
-        <Title variant="titleLarge">Card title</Title>
+        <Text variant="label">Card title</Text>
         <Rating>
           <View style={{ flexDirection: "row" }}>
             {result.map((item, index) => (
               <Star width={20} height={20} />
             ))}
           </View>
-          {isOpenNow && <Open width={20} height={20} />}
+          <Spacer position="left" size="large">
+            {isOpenNow && <Open width={20} height={20} />}
+          </Spacer>
         </Rating>
 
-        <Text variant="bodyMedium">Card content</Text>
+        <Text variant="error">CLOSED TEMPORARILY</Text>
       </Card.Content>
     </RestuarantCard>
-    // <View style={styles.card_container}>
-    //   <Image
-    //     style={styles.logo}
-    //     source={{
-    //       uri: "https://www.google.com/imgres?imgurl=https%3A%2F%2Fmedia.architecturaldigest.com%2Fphotos%2F55e793d1cd709ad62e901830%2F16%3A9%2Fw_1280%2Cc_limit%2Fdam-images-travel-polo-bar-polo-bar-ralph-lauren-restaurant-manhattan-01-h670-search-wm.jpg&tbnid=yBucnykQRjE6pM&vet=12ahUKEwjq3LL2j4GAAxXNnCcCHaP1BmoQMygBegUIARDJAQ..i&imgrefurl=https%3A%2F%2Fwww.architecturaldigest.com%2Fstory%2Fpolo-bar-ralph-lauren-restaurant-manhattan-article&docid=blVFa6f2HvuTMM&w=656&h=369&q=polo%20restaurant&ved=2ahUKEwjq3LL2j4GAAxXNnCcCHaP1BmoQMygBegUIARDJAQ",
-    //     }}
-    //   />
-
-    //   <Text>{name}</Text>
-    // </View>
   );
 };
 

@@ -1,16 +1,7 @@
 import { RestuarantScreen } from "./src/features/resturant/screens/restuarant.screen";
-import { View, StyleSheet, Image, Text } from "react-native";
-
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
-import { useCallback } from "react";
-import {
-  useFonts as useOswald,
-  Oswald_400Regular,
-} from "@expo-google-fonts/oswald";
-import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
-import { useFonts, Inter_900Black } from "@expo-google-fonts/inter";
-import * as Font from "expo-font";
+import { useFonts } from "@expo-google-fonts/inter";
 
 // REMEMBER TO ADD ESLINT
 
