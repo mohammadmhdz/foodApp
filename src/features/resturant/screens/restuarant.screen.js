@@ -1,6 +1,7 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { Searchbar } from "react-native-paper";
 import { RestuarantInfo } from "../components/restuarant-info";
+
 import {
   StyleSheet,
   Text,
@@ -8,13 +9,24 @@ import {
   SafeAreaView,
   Platform,
   StatusBar,
+  FlatList,
 } from "react-native";
 import styled from "styled-components/native";
+import { Spacer } from "../../../components/spacer/spacer.component";
 
 // in line 17 : we have used a way that check if we have currentHeight by && and then set it as margin-top(in IOS we dont have that and that was our trouble)
+// dar safeArea flex : 1dashtim vali bekhatere oon navBar payini baresh dashtim
 const SafeArea = styled(SafeAreaView)`
-  flex: 1;
   ${StatusBar.currentHeight && `margin-top:${StatusBar.currentHeight}px`};
+`;
+
+// nahve CSS neveshtan bara FLATLIST motefavete
+const RestuarantList = styled(FlatList).attrs({
+  contentContainerStyle: {
+    padding: 16,
+  },
+})`
+  margin-bottom: 70px;
 `;
 
 const SearchbarContainer = styled(View)`
@@ -23,6 +35,7 @@ const SearchbarContainer = styled(View)`
   background-color: white;
   padding: 15px;
 `;
+
 export const RestuarantScreen = () => {
   return (
     <SafeArea>
@@ -30,6 +43,17 @@ export const RestuarantScreen = () => {
         {/* <Text>search</Text> */}
         <Searchbar />
       </SearchbarContainer>
+      {/* flatlist : keyExtractor miad name ra be onvan key dar nazar migire ,,, data felan nadadim behesh ,,, renderItem ham chzie ke gharare listi azash doros kone ,,, dar content containerSyle be harkdom az content ha style midahim*/}
+      <RestuarantList
+        data={[{ name: 1 }, { name: 2 }, { name: 3 }]}
+        renderItem={() => (
+          <Spacer position="bottom" size="large">
+            <RestuarantInfo />
+          </Spacer>
+        )}
+        keyExtractor={(item) => item.name}
+        contentContainerStyle={{ padding: 16 }}
+      />
       <View style={styles.list_con}>
         <RestuarantInfo />
       </View>
