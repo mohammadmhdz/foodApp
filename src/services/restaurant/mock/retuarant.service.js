@@ -1,5 +1,4 @@
 import { mocks } from "../index";
-// import { camelCase, camelize } from "camelize";
 export const restaurantsRequest = (location = "37.7749295,-122.4194155") => {
   return new Promise((resolve, reject) => {
     const mock = mocks[location];
@@ -11,11 +10,8 @@ export const restaurantsRequest = (location = "37.7749295,-122.4194155") => {
 };
 
 const restuarantsTransform = (result) => {
-  // const newResult = camelize(result);
-  // return newResult;
-  // var camelizer = require("camelize");
-  // return camelizer(result);
-  return result;
+  var camelize = require("../../../../node_modules/camelize/index");
+  return camelize(result);
 };
 
 restaurantsRequest()
