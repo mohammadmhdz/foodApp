@@ -6,11 +6,14 @@ import { Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { NavigationContainer } from "@react-navigation/native";
 import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import { restaurantsRequest } from "./src/services/restaurant/mock/retuarant.service";
+
 // REMEMBER TO ADD ESLINT
 
 // for NAVBAR
 
 const Tab = createBottomTabNavigator();
+const test = restaurantsRequest();
 
 const Setting = () => <Text>setting</Text>;
 const Map = () => <Text>Map</Text>;
