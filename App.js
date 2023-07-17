@@ -15,7 +15,7 @@ import { restaurantsRequest } from "./src/services/restaurant/mock/retuarant.ser
 const Tab = createBottomTabNavigator();
 const test = restaurantsRequest();
 
-const Setting = () => <Text>setting</Text>;
+const Setting = () => <Text>khiar</Text>;
 const Map = () => <Text>Map</Text>;
 
 export default function App() {
