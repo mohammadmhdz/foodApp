@@ -14,6 +14,7 @@ export const restaurantsRequest = (location = "37.7749295,-122.4194155") => {
 export const restuarantsTransform = ({ results = [] }) => {
   //dar inja harekat JAVASCRIPT zadim o be json chize jadid ezafe kardim
   const mappedResult = results.map((restuarant) => {
+    restuarant.photo = [];
     return {
       ...restuarant,
       isOpenNow: restuarant.opening_hours && restuarant.opening_hours.open_now,

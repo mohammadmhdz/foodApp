@@ -21,21 +21,28 @@ const Rating = styled.View`
 // our sample data
 export const RestuarantInfo = ({ restaurant = {} }) => {
   const {
-    name = "polo",
-    photo = "https://www.townandcountrymag.com/leisure/dining/a35968686/the-polo-bar-rides-again/",
-    address = "baghale kav",
+    name = "Some Restaurant",
+    icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
+    photos = [
+      "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
+    ],
+    address = "100 some random street",
     isOpenNow = true,
-    rating = 3,
-    isClosedTemporarily,
+    rating = 4,
+    isClosedTemporarily = true,
   } = restaurant;
 
   // STARS svg setting // map func do not work on undefined arrays
-  const ratingArray = new Array(rating);
-  const result = Array.from(ratingArray, (v) => (v === undefined ? "-" : v));
+  const ratingArray = Array.from(new Array(Math.floor(rating)));
+
+  // my solution did not work correctly
+  // const ratingArray = new Array(rating);
+  // const result = Array.from(ratingArray, (v) => (v === undefined ? "-" : v));
 
   return (
-    <RestuarantCard elevation={1}>
+    <RestuarantCard elevation={5}>
       <Card.Cover
+        key={name}
         style={styles.image_container}
         source={{ uri: "https://picsum.photos/700" }}
       />
@@ -43,7 +50,7 @@ export const RestuarantInfo = ({ restaurant = {} }) => {
         <Text variant="label">Card title</Text>
         <Rating>
           <View style={{ flexDirection: "row" }}>
-            {result.map((item, index) => (
+            {ratingArray.map((item, index) => (
               <Star width={20} height={20} />
             ))}
           </View>

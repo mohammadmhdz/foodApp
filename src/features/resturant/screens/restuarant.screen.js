@@ -1,5 +1,5 @@
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { Searchbar } from "react-native-paper";
+import { ActivityIndicator, Searchbar } from "react-native-paper";
 import { RestuarantInfo } from "../components/restuarant-info";
 import { RestuarantsContext } from "../../../services/restaurant/mock/restuarant.context";
 
@@ -39,8 +39,8 @@ const SearchbarContainer = styled(View)`
 `;
 
 export const RestuarantScreen = () => {
-  const restuarantContext = useContext(RestuarantsContext);
-  console.log(restuarantContext);
+  const { restaurants, isLoading, error } = useContext(RestuarantsContext);
+  // console.log(restaurants);
   return (
     <SafeArea>
       <SearchbarContainer>
@@ -48,16 +48,32 @@ export const RestuarantScreen = () => {
         <Searchbar />
       </SearchbarContainer>
       {/* flatlist : keyExtractor miad name ra be onvan key dar nazar migire ,,, data felan nadadim behesh ,,, renderItem ham chzie ke gharare listi azash doros kone ,,, dar content containerSyle be harkdom az content ha style midahim*/}
-      <RestuarantList
-        data={restuarantContext.restuarants}
-        renderItem={() => (
-          <Spacer position="bottom" size="large">
-            <RestuarantInfo />
-          </Spacer>
-        )}
-        keyExtractor={(item) => item.name}
-        contentContainerStyle={{ padding: 16 }}
-      />
+      {/* activityIndicator : bara LOADIND safhe hast o style dadanesh ajib shode o niaz be taghir dare badan*/}
+      {isLoading ? (
+        <View style={{ position: "absolute", top: "200%", left: "50%" }}>
+          <ActivityIndicator
+            animating={true}
+            size={50}
+            colors="blue"
+            style={{ marginLeft: -25 }}
+          />
+        </View>
+      ) : (
+        <RestuarantList
+          data={restaurants}
+          renderItem={({ item, index }) => {
+            //item is one object off an array
+            console.log(item, index);
+            return (
+              <Spacer position="bottom" size="large">
+                <RestuarantInfo restaurant={item} />
+              </Spacer>
+            );
+          }}
+          keyExtractor={(item) => item.name}
+          contentContainerStyle={{ padding: 16 }}
+        />
+      )}
     </SafeArea>
   );
 };
