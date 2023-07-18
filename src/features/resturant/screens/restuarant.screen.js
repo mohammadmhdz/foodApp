@@ -2,6 +2,7 @@ import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { ActivityIndicator, Searchbar } from "react-native-paper";
 import { RestuarantInfo } from "../components/restuarant-info";
 import { RestuarantsContext } from "../../../services/restaurant/mock/restuarant.context";
+import { Search } from "../components/search.component";
 
 import {
   StyleSheet,
@@ -31,22 +32,12 @@ const RestuarantList = styled(FlatList).attrs({
   margin-bottom: 70px;
 `;
 
-const SearchbarContainer = styled(View)`
-  display: flex;
-  justify-content: space-between;
-  background-color: white;
-  padding: 15px;
-`;
-
 export const RestuarantScreen = () => {
   const { restaurants, isLoading, error } = useContext(RestuarantsContext);
   // console.log(restaurants);
   return (
     <SafeArea>
-      <SearchbarContainer>
-        {/* <Text>search</Text> */}
-        <Searchbar />
-      </SearchbarContainer>
+      <Search />
       {/* flatlist : keyExtractor miad name ra be onvan key dar nazar migire ,,, data felan nadadim behesh ,,, renderItem ham chzie ke gharare listi azash doros kone ,,, dar content containerSyle be harkdom az content ha style midahim*/}
       {/* activityIndicator : bara LOADIND safhe hast o style dadanesh ajib shode o niaz be taghir dare badan*/}
       {isLoading ? (
@@ -63,7 +54,7 @@ export const RestuarantScreen = () => {
           data={restaurants}
           renderItem={({ item, index }) => {
             //item is one object off an array
-            console.log(item, index);
+            // console.log(item, index);
             return (
               <Spacer position="bottom" size="large">
                 <RestuarantInfo restaurant={item} />
