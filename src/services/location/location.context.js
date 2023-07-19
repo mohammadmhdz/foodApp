@@ -7,17 +7,18 @@ export const LocationContextProvider = ({ children }) => {
   const [keyword, setKeyword] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
   const [error, setError] = useState(null);
-  const onSearch = (searchKeyword = "san francisco") => {
+  const onSearch = (searchKeyword) => {
+    // lower line write the search entry for us
     // console.log(searchKeyword);
     setIsLoading(true);
     setKeyword(searchKeyword);
-    locationRequest(searchKeyword.toLowerCase())
+    locationRequest(searchKeyword)
       .then(locationTransform)
       .then((result) => {
         setIsLoading(false);
         setLocation(result);
         // inja be ma oon natije search ke mikhahim ra be ma neshan midahad va natije promise ra
-        console.log(result);
+        // console.log(result, "locarion result");
       })
       .catch((err) => {
         setIsLoading(false);

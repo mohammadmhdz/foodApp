@@ -1,6 +1,6 @@
 import { Searchbar } from "react-native-paper";
 import { LocationContext } from "../../../services/location/location.context";
-import { useContext, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import styled from "styled-components/native";
 import { View } from "react-native";
 
@@ -16,10 +16,24 @@ export const Search = () => {
   const [searchKeyword, setSearchKeyword] = useState(keyword);
   //   natije estefade az useContext ra neshan midahad
   //   console.log(locationContext);
+  useEffect(() => {
+    search(searchKeyword);
+  }, []);
   return (
     <SearchbarContainer>
       {/* <Text>search</Text> */}
-      <Searchbar />
+      <Searchbar
+        placeholder="enter your city"
+        value={searchKeyword}
+        onSubmitEditing={() => {
+          search(searchKeyword.toLowerCase());
+        }}
+        onChangeText={(text) => {
+          if (!text.length) {
+          }
+          setSearchKeyword(text);
+        }}
+      />
     </SearchbarContainer>
   );
 };

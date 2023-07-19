@@ -47,7 +47,9 @@ export const RestuarantInfo = ({ restaurant = {} }) => {
         source={{ uri: "https://picsum.photos/700" }}
       />
       <Card.Content>
-        <Text variant="label">Card title</Text>
+        <Text variant="label">{name}</Text>
+        <Text variant="label">{address}</Text>
+
         <Rating>
           <View style={{ flexDirection: "row" }}>
             {ratingArray.map((item, index) => (
@@ -58,8 +60,11 @@ export const RestuarantInfo = ({ restaurant = {} }) => {
             {isOpenNow && <Open width={20} height={20} />}
           </Spacer>
         </Rating>
-
-        <Text variant="error">CLOSED TEMPORARILY</Text>
+        {isClosedTemporarily ? (
+          <Text variant="error">CLOSED TEMPORARILY</Text>
+        ) : (
+          <Text variant="error">open</Text>
+        )}
       </Card.Content>
     </RestuarantCard>
   );
