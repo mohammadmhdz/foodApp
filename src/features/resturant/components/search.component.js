@@ -16,9 +16,12 @@ export const Search = () => {
   const [searchKeyword, setSearchKeyword] = useState(keyword);
   //   natije estefade az useContext ra neshan midahad
   //   console.log(locationContext);
-  useEffect(() => {
-    search(searchKeyword);
-  }, []);
+
+  // video 20
+  // in useEffect az nazare techniki khub niso bayad ye fekri barash bokonim
+  // useEffect(() => {
+  //   search(searchKeyword);
+  // }, []);
   return (
     <SearchbarContainer>
       {/* <Text>search</Text> */}

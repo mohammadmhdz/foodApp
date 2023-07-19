@@ -17,7 +17,6 @@ export const restuarantsTransform = ({ results = [] }) => {
     //   restaurant.photos = restaurant.photos.map((p) => {
     //     return mockImages[0];
     //   });
-
     return {
       ...restaurant,
       address: restaurant.vicinity,

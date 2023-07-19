@@ -9,6 +9,7 @@ import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
 import { restaurantsRequest } from "./src/services/restaurant/mock/retuarant.service";
 import { RestuarantsContextProvider } from "./src/services/restaurant/mock/restuarant.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
+import { Navigation } from "./src/infrastructure/navigator/index";
 
 // REMEMBER TO ADD ESLINT
 
@@ -36,36 +37,7 @@ export default function App() {
       <ThemeProvider theme={theme}>
         <LocationContextProvider>
           <RestuarantsContextProvider>
-            <NavigationContainer>
-              <Tab.Navigator
-                screenOptions={({ route }) => ({
-                  tabBarIcon: ({ focused, color, size }) => {
-                    let iconName;
-                    // focused ro faght bara in gozashtim ke dar surati ke rush budim az ye icon FILL shode estefade kone
-                    if (route.name === "Map") {
-                      iconName = focused ? "md-map" : "md-map-outline";
-                    } else if (route.name === "Settings") {
-                      iconName = focused ? "settings" : "settings-outline";
-                    } else if (route.name === "restuarant") {
-                      iconName = focused
-                        ? "md-restaurant"
-                        : "md-restaurant-outline";
-                    }
-
-                    // You can return any component that you like here!
-                    return (
-                      <Ionicons name={iconName} size={size} color={color} />
-                    );
-                  },
-                  tabBarActiveTintColor: "tomato",
-                  tabBarInactiveTintColor: "gray",
-                })}
-              >
-                <Tab.Screen name="Settings" component={Setting} />
-                <Tab.Screen name="Map" component={Map} />
-                <Tab.Screen name="restuarant" component={RestuarantScreen} />
-              </Tab.Navigator>
-            </NavigationContainer>
+            <Navigation />
           </RestuarantsContextProvider>
         </LocationContextProvider>
       </ThemeProvider>

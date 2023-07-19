@@ -12,7 +12,15 @@ export const LocationContextProvider = ({ children }) => {
     // console.log(searchKeyword);
     setIsLoading(true);
     setKeyword(searchKeyword);
-    locationRequest(searchKeyword)
+  };
+
+  // we did it in video 20 to optimze our code and it will run whenever the keyWord change
+  useEffect(() => {
+    // if (!keyword.length) {
+    //   // do anything
+    //   return;
+    // }
+    locationRequest(keyword)
       .then(locationTransform)
       .then((result) => {
         setIsLoading(false);
@@ -24,7 +32,7 @@ export const LocationContextProvider = ({ children }) => {
         setIsLoading(false);
         setError(err);
       });
-  };
+  }, [keyword]);
   // vaghti use effect ma empty array bashe ba har seri render shodan in method farakhani mishavad ke chize khubi nis o  bayad avazesh konim
   useEffect(() => {
     onSearch();
