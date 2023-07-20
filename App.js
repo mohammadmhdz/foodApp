@@ -1,3 +1,4 @@
+// import "react-native-gesture-handler";
 import { RestuarantScreen } from "./src/features/resturant/screens/restuarant.screen";
 import { ThemeProvider } from "styled-components/native";
 import { theme } from "./src/infrastructure/theme";
