@@ -11,24 +11,15 @@ const SearchbarContainer = styled(View)`
   padding: 15px;
 `;
 
-export const Search = () => {
+export const SearchMap = () => {
   const { keyword, search } = useContext(LocationContext);
   const [searchKeyword, setSearchKeyword] = useState(keyword);
-  // baraye hamahang kardan 2ta search ke vaghti yejio mizani oon yeki ham taghir kone
   useEffect(() => {
     setSearchKeyword(keyword);
   }, [keyword]);
-  //   natije estefade az useContext ra neshan midahad
-  //   console.log(locationContext);
 
-  // video 20
-  // in useEffect az nazare techniki khub niso bayad ye fekri barash bokonim
-  // useEffect(() => {
-  //   search(searchKeyword);
-  // }, []);
   return (
     <SearchbarContainer>
-      {/* <Text>search</Text> */}
       <Searchbar
         placeholder="enter your city"
         value={searchKeyword}

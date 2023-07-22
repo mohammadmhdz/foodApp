@@ -20,10 +20,8 @@ const RestuarantList = styled(FlatList).attrs({
   contentContainerStyle: {
     padding: 16,
   },
-})`
-  margin-bottom: 70px;
-`;
-
+})``;
+// matgin-bottom : 70px;
 export const RestuarantScreen = ({ navigation }) => {
   const { restaurants, isLoading, error } = useContext(RestuarantsContext);
   // console.log(restaurants);
@@ -61,7 +59,6 @@ export const RestuarantScreen = ({ navigation }) => {
             );
           }}
           keyExtractor={(item) => item.name}
-          contentContainerStyle={{ padding: 16 }}
         />
       )}
     </SafeArea>
